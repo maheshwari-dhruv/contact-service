@@ -21,7 +21,7 @@ public class ContactController {
     private ContactService contactService;
 
     @PostMapping("/sendmail")
-    public ResponseEntity<GenericResponse<?>> sendNotificationEmail(@RequestBody ContactRequest contactRequest) throws Exception {
+    public ResponseEntity<GenericResponse<?>> sendNotificationEmail(@RequestBody ContactRequest contactRequest) {
         return new ResponseEntity<>(GenericResponse.success(contactService.sendMail(contactRequest)), HttpStatus.OK);
     }
 }
