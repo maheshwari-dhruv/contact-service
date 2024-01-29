@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/send")
+@RequestMapping("/api/v1")
 public class ContactController {
 
     @Autowired
     private ContactService contactService;
 
-    @PostMapping("/notification-email")
-    public ResponseEntity<GenericResponse<?>> sendNotificationEmail(@RequestBody ContactRequest contactRequest) {
+    @PostMapping("/sendmail")
+    public ResponseEntity<GenericResponse<?>> sendNotificationEmail(@RequestBody ContactRequest contactRequest) throws Exception {
         return new ResponseEntity<>(GenericResponse.success(contactService.sendMail(contactRequest)), HttpStatus.OK);
     }
 }
