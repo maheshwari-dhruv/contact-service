@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 public class ContactResponse extends BaseResponse {
+    private int statusCode;
     private String message;
     private LocalDateTime dateTime;
 }

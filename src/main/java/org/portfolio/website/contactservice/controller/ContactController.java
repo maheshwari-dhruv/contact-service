@@ -1,4 +1,4 @@
-package org.portfolio.website.contactservice.web.controller;
+package org.portfolio.website.contactservice.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.portfolio.website.contactservice.domain.dto.base.GenericResponse;
@@ -21,7 +21,7 @@ public class ContactController {
     private ContactService contactService;
 
     @PostMapping("/sendmail")
-    public ResponseEntity<GenericResponse<?>> sendNotificationEmail(@RequestBody ContactRequest contactRequest) {
+    public ResponseEntity<GenericResponse<?>> sendContactEmail(@RequestBody ContactRequest contactRequest) {
         return new ResponseEntity<>(GenericResponse.success(contactService.sendMail(contactRequest)), HttpStatus.OK);
     }
 }

@@ -19,25 +19,47 @@ public class ReplyBackMailImpl implements ReplyBackMail {
     @Autowired
     private JavaMailSender mailSender;
 
+    /**
+     * Sends a reply back email.
+     *
+     * @param replyBackEmail The email data transfer object.
+     * @return True if the email is sent successfully, false otherwise.
+     */
     @Override
     public Boolean sendReplyBackMail(EmailDTO replyBackEmail) {
+        long startTime = System.currentTimeMillis();
+
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message);
             helper.setFrom(replyBackEmail.getFrom(), "Dhruv Maheshwari");
             helper.setTo(replyBackEmail.getTo());
             helper.setSubject(replyBackEmail.getSubject());
-
-            // TODO: update body with email template
-            helper.setText(replyBackEmail.getBody(), false);
+            helper.setText(replyBackEmail.getBody(), true);
 
             mailSender.send(message);
 
-            // TODO: Update return value
+            log.info("Email sent successfully to: {}", replyBackEmail.getTo());
             return true;
         } catch (MessagingException | UnsupportedEncodingException e) {
-            log.error("Exception: {}", e.getMessage());
+            log.error("Exception while sending email: {}", e.getMessage());
             return false;
+        } finally {
+            long endTime = System.currentTimeMillis();
+            long duration = endTime - startTime;
+            log.debug("Sent Duration: {}", formatMailSentDuration(duration));
+        }
+    }
+
+    private String formatMailSentDuration(long duration) {
+        long seconds = duration / 1000;
+        long minutes = seconds / 60;
+        seconds %= 60;
+
+        if (minutes > 0) {
+            return String.format("%dmin %dsec", minutes, seconds);
+        } else {
+            return String.format("%dsec", seconds);
         }
     }
 }
