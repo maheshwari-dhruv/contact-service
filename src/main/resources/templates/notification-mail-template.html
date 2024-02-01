@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +15,7 @@
             padding: 20px;
         }
 
-        .contact-info h3 {
+        .contact-info span {
             margin: 0;
             padding-bottom: 5px;
         }
@@ -24,45 +24,17 @@
         .contact-message {
             margin-bottom: 10px;
         }
-
-        .contact-message {
-            background-color: lightseagreen;
-        }
-
-        .otro-blockquote {
-            margin: 0;
-            font-style: italic;
-            color: #6b6b6b;
-            padding:1.2em 30px 1.2em 50px;
-            border-left: 8px solid lightseagreen;
-            line-height: 1.4;
-            position: relative;
-            background: rgb(230, 240, 240);
-        }
-
-        .otro-blockquote::before {
-            font-family: Arial;
-            content: "\201C";
-            color: lightseagreen;
-            font-size: 4em;
-            position: absolute;
-            left: 10px;
-            top: 0px;
-        }
-
-        .otro-blockquote::after {
-            content: "";
-        }
     </style>
 </head>
 <body>
 <div class="main">
     <div class="contact-info">
-        <h3 class="name">Name: <span th:text="${name}" /></h3>
-        <h3 class="email">Email: <span th:text="${email}" /></h3>
+        <span class="name">Name: <span th:text="${name}" /></span>
+        <br>
+        <span class="email">Email: <span th:text="${email}" /></span>
     </div>
     <div class="contact-message">
-        <blockquote class="otro-blockquote" th:text="${body}" />
+        <span class="message"><b>"</b> <i><span th:text="${body}" /></i> <b>"</b></span>
     </div>
 </div>
 </body>

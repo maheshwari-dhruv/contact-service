@@ -1,5 +1,6 @@
 package org.portfolio.website.contactservice.controller;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.portfolio.website.contactservice.domain.dto.base.GenericResponse;
 import org.portfolio.website.contactservice.domain.dto.request.ContactRequest;
@@ -21,7 +22,12 @@ public class ContactController {
     private ContactService contactService;
 
     @PostMapping("/sendmail")
-    public ResponseEntity<GenericResponse<?>> sendContactEmail(@RequestBody ContactRequest contactRequest) {
-        return new ResponseEntity<>(GenericResponse.success(contactService.sendMail(contactRequest)), HttpStatus.OK);
+    public ResponseEntity<GenericResponse<?>> sendContactEmail(@Valid @RequestBody ContactRequest contactRequest) {
+        try {
+            return new ResponseEntity<>(GenericResponse.success(contactService.sendMail(contactRequest)), HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("Error sending mail: {}", e.getMessage());
+            return new ResponseEntity<>(GenericResponse.error(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

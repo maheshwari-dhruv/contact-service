@@ -75,16 +75,19 @@ public class ContactServiceImpl implements ContactService {
     }
 
     private IContext createReplyBackMailBody() {
-        String body = """
-                Thanks a bunch for dropping me a line!🌟 I appreciate your interest in connecting.
+        String firstLine = "Thanks a bunch for dropping me a line! I appreciate your interest in connecting.";
+        String secondLine = """
                 I'm currently going through my messages and will get back to you promptly. I'm eager to connect & chat with you!
                 Big thanks once again, and catch you on the flip side!
-                Cheers,
-                Dhruv
                 """;
+        String thirdLine = "Cheers,";
+        String name = "Dhruv";
 
         Context context = new Context();
-        context.setVariable("body", body);
+        context.setVariable("first_line", firstLine);
+        context.setVariable("second_line", secondLine);
+        context.setVariable("third_line", thirdLine);
+        context.setVariable("name", name);
         return context;
     }
 

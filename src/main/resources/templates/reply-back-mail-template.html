@@ -14,15 +14,19 @@
         .main {
             padding: 20px;
         }
-
-        p {
-            color: white;
-        }
     </style>
 </head>
 <body>
 <div class="main">
-    <p th:text="${body}" />
+    <span th:text="${first_line}" />
+    <br>
+    <br>
+    <span th:text="${second_line}" />
+    <br>
+    <br>
+    <span th:text="${third_line}" />
+    <br>
+    <span th:text="${name}" />
 </div>
 </body>
 </html>

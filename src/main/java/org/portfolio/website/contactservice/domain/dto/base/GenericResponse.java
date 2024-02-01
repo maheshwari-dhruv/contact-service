@@ -51,6 +51,10 @@ public class GenericResponse<T> implements Serializable {
         return new GenericResponse(HttpCodes.SUCCESS, data);
     }
 
+    public static <T> GenericResponse error() {
+        return new GenericResponse(HttpCodes.INTERNAL_SERVER_ERROR, null);
+    }
+
     public static <T> GenericResponse success() {
         return new GenericResponse(HttpCodes.SUCCESS, null);
     }

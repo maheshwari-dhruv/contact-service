@@ -5,12 +5,14 @@ import jakarta.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.portfolio.website.contactservice.integration.NotificationMail;
 import org.portfolio.website.contactservice.integration.dto.EmailDTO;
+import org.portfolio.website.contactservice.utils.SentDurationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
+
 
 @Slf4j
 @Component
@@ -47,19 +49,7 @@ public class NotificationMailImpl implements NotificationMail {
         } finally {
             long endTime = System.currentTimeMillis();
             long duration = endTime - startTime;
-            log.debug("Sent Duration: {}", formatMailSentDuration(duration));
-        }
-    }
-
-    private String formatMailSentDuration(long duration) {
-        long seconds = duration / 1000;
-        long minutes = seconds / 60;
-        seconds %= 60;
-
-        if (minutes > 0) {
-            return String.format("%dmin %dsec", minutes, seconds);
-        } else {
-            return String.format("%dsec", seconds);
+            log.debug("Sent Duration: {}", SentDurationUtil.formatMailSentDuration(duration));
         }
     }
 }
