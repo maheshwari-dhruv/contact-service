@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notification Mail Body</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            padding: 20px;
+        }
+
+        .contact-info span {
+            margin: 0;
+            padding-bottom: 5px;
+        }
+
+        .contact-info,
+        .contact-message {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="contact-info">
+        <span class="name">Name: <span th:text="${name}" /></span>
+        <br>
+        <span class="email">Email: <span th:text="${email}" /></span>
+    </div>
+    <div class="contact-message">
+        <span class="message"><b>"</b> <i><span th:text="${body}" /></i> <b>"</b></span>
+    </div>
+</div>
+</body>
+</html>

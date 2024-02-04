@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reply Back Mail Body</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <span th:text="${first_line}" />
+    <br>
+    <br>
+    <span th:text="${second_line}" />
+    <br>
+    <br>
+    <span th:text="${third_line}" />
+    <br>
+    <span th:text="${name}" />
+</div>
+</body>
+</html>
